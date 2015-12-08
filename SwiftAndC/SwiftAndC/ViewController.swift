@@ -8,46 +8,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print(quickSort(&numbers))
-        print(quickSortString(&myStrings))
+        quickSortGeneric(numbers)
     }
-    func quickSort(inout input:[Int]) -> ([Int]) {
-        
-        qsort(&input, input.count, sizeof(Int)) { (lhs, rhs) -> Int32 in
-            // do our magic
-            let left:Int = UnsafePointer(lhs).memory
-            let right:Int = UnsafePointer(rhs).memory
-            
-            if left < right {
-                return -1
-            }
-            if left == right {
-                return 1
-            }
+
+    func quickSortGeneric<A:Comparable>(var input:[A]) -> ([A]) {
+        qsort_b(&input, input.count, sizeof(A)) { (lhs, rhs) -> Int32 in
+            let left:A = UnsafePointer(lhs).memory
+            let right:A = UnsafePointer(rhs).memory
+            if left < right { return -1}
+            if left == right { return 1}
             return 1
         }
         print(input)
         return input
     }
-    func quickSortString(inout input:[String]) -> ([String]) {
-        
-        qsort(&input, input.count, sizeof(String)) { (lhs, rhs) -> Int32 in
-            // do our magic
-            let left:String = UnsafePointer(lhs).memory
-            let right:String = UnsafePointer(rhs).memory
-            
-            if left < right {
-                return -1
-            }
-            if left == right {
-                return 1
-            }
-            return 1
-        }
-        print(input)
-        return input
-    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
