@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     }
 
     func quickSortGeneric<A:Comparable>(var input:[A]) -> ([A]) {
-        qsort_b(&input, input.count, sizeof(A)) { (lhs, rhs) -> Int32 in
+        qsort_b(&input, input.count, strideof(A)) { (lhs, rhs) -> Int32 in
             let left:A = UnsafePointer(lhs).memory
             let right:A = UnsafePointer(rhs).memory
             if left < right { return -1}
