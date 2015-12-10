@@ -8,10 +8,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        quickSortGeneric(numbers)
+        quickSortGeneric(&numbers)
+        
+        let character = "Kwame".characters.map { String($0) }
+        print(character.reverse())
     }
 
-    func quickSortGeneric<A:Comparable>(var input:[A]) -> ([A]) {
+    func quickSortGeneric<A:Comparable>(inout input:[A]) -> ([A]) {
         qsort_b(&input, input.count, strideof(A)) { (lhs, rhs) -> Int32 in
             let left:A = UnsafePointer(lhs).memory
             let right:A = UnsafePointer(rhs).memory
