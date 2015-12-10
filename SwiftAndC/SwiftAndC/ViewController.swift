@@ -11,7 +11,7 @@ class ViewController: UIViewController {
         quickSortGeneric(&numbers)
         
         let character = "Kwame".characters.map { String($0) }
-        print(character.reverse())
+        print(character)
     }
 
     func quickSortGeneric<A:Comparable>(inout input:[A]) -> ([A]) {
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             let left:A = UnsafePointer(lhs).memory
             let right:A = UnsafePointer(rhs).memory
             if left < right { return -1}
-            if left == right { return 1}
+            if left == right { return 0}
             return 1
         }
         print(input)
